@@ -1,0 +1,14 @@
+{
+  "name": "cat-chat",
+  "version": "1.0.0",
+  "description": "A basic chat using express and socket.io with cats",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"test\""
+  },
+  "author": "apromtep@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
