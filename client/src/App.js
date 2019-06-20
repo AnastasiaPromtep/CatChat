@@ -5,17 +5,20 @@ import socketIoClient from "socket.io-client";
 
 class App extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             messageText: ''
         };
+        this.socket = socketIoClient("http://127.0.0.1:3000");
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
-        const socket = socketIoClient("http://127.0.0.1:3000");
+        this.socket.on('message', (message) => {
+            console.log(message);
+        });
     }
 
     handleChange(event) {
@@ -39,6 +42,8 @@ class App extends React.Component {
         <div className="App">
             <div className="Chat">
                 <h1>Cat chat !</h1>
+                <ul>
+                </ul>
                 <form onSubmit={this.handleSubmit}>
                     <input
                             type="text"
