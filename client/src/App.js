@@ -47,8 +47,8 @@ class App extends React.Component {
                             value={this.state.messageText}>
 
                     </input>
+                    <button type="submit">Enter</button>
                 </form>
-                <button type="button">Enter</button>
             </div>
         </div>
       );
