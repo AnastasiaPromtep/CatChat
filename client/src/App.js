@@ -8,7 +8,8 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            messageText: ''
+            messageText: '',
+            messages: []
         };
         this.socket = socketIoClient("http://127.0.0.1:3000");
         this.handleChange = this.handleChange.bind(this);
@@ -18,6 +19,13 @@ class App extends React.Component {
     componentDidMount() {
         this.socket.on('message', (message) => {
             console.log(message);
+            this.setState(state => {
+                const list = [...state.messages, message]
+                return {
+                    messageText: state.messageText,
+                    messages: list
+                };
+            });
         });
     }
 
@@ -43,14 +51,18 @@ class App extends React.Component {
             <div className="Chat">
                 <h1>Cat chat !</h1>
                 <ul>
+                    {this.state.messages.map(message => {
+                        return (
+                            <li>{message}</li>
+                        )
+                    })}
                 </ul>
                 <form onSubmit={this.handleSubmit}>
                     <input
                             type="text"
                             placeholder="Enter a message here..."
                             onChange={this.handleChange}
-                            value={this.state.messageText}>
-
+                            value={this.state.messageText} required>
                     </input>
                     <button type="submit">Enter</button>
                 </form>
