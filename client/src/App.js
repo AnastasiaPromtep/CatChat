@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import socketIoClient from "socket.io-client";
 
 class App extends React.Component {
 
@@ -13,6 +14,10 @@ class App extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidMount() {
+        const socket = socketIoClient("http://127.0.0.1:3000");
+    }
+
     handleChange(event) {
         this.setState({
             messageText: event.target.value
@@ -22,6 +27,8 @@ class App extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         console.log('Meow !');
+        const socket = socketIoClient("http://127.0.0.1:3000");
+        socket.emit('message', this.state.messageText);
         this.setState({
             messageText: ''
         });
