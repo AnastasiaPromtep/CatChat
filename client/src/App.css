@@ -47,9 +47,15 @@
     resize: none;
 }
 
+.MessageList span {
+    background-color: lightgrey;
+    display: block;
+}
+
 .MessageList {
     border: 2px solid black;
     height: 20em;
     width: 100%;
     margin-bottom: 1em;
+    overflow: auto;
 }

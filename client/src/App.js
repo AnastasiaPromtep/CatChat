@@ -56,13 +56,11 @@ class App extends React.Component {
             <div className="Chat">
                 <h1>Cat chat !</h1>
                 <div className="MessageList">
-                    <ul>
                         {this.state.messages.map(message => {
                             return (
-                                <li>Amazing Cat: {message}</li>
+                                <span>Amazing Cat: {message}</span>
                             )
                         })}
-                    </ul>
                 </div>
                 <form onSubmit={this.handleSubmit}>
                     <input
