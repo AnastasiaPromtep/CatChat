@@ -14,6 +14,7 @@ class App extends React.Component {
         this.socket = socketIoClient("http://127.0.0.1:3000");
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleOnclickClear = this.handleOnclickClear.bind(this)
     }
 
     componentDidMount() {
@@ -45,6 +46,10 @@ class App extends React.Component {
         });
     }
 
+    handleOnclickClear(event) {
+        this.setState({messages: []});
+    }
+
     render() {
       return (
         <div className="App">
@@ -68,6 +73,7 @@ class App extends React.Component {
                     </input>
                     <button type="submit">Enter</button>
                 </form>
+                <button type="button" onClick={this.handleOnclickClear}>Clear chat</button>
             </div>
         </div>
       );
