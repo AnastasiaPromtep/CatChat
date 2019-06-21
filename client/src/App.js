@@ -50,13 +50,15 @@ class App extends React.Component {
         <div className="App">
             <div className="Chat">
                 <h1>Cat chat !</h1>
-                <ul>
-                    {this.state.messages.map(message => {
-                        return (
-                            <li>{message}</li>
-                        )
-                    })}
-                </ul>
+                <div className="MessageList">
+                    <ul>
+                        {this.state.messages.map(message => {
+                            return (
+                                <li>Amazing Cat: {message}</li>
+                            )
+                        })}
+                    </ul>
+                </div>
                 <form onSubmit={this.handleSubmit}>
                     <input
                             type="text"

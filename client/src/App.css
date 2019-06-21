@@ -46,3 +46,10 @@
 .Chat textarea {
     resize: none;
 }
+
+.MessageList {
+    border: 2px solid black;
+    height: 20em;
+    width: 100%;
+    margin-bottom: 1em;
+}
