@@ -19,7 +19,6 @@ class App extends React.Component {
 
     componentDidMount() {
         this.socket.on('message', (message) => {
-            console.log(message);
             this.setState(state => {
                 const list = [...state.messages, message]
                 return {
@@ -39,8 +38,7 @@ class App extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         console.log('Meow !');
-        const socket = socketIoClient("http://127.0.0.1:3000");
-        socket.emit('message', this.state.messageText);
+        this.socket.emit('message', this.state.messageText);
         this.setState({
             messageText: ''
         });
