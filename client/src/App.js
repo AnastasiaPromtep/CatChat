@@ -39,8 +39,12 @@ class App extends React.Component {
         event.preventDefault();
         console.log('Meow !');
         this.socket.emit('message', this.state.messageText);
-        this.setState({
-            messageText: ''
+        this.setState(state => {
+            const list = [...state.messages, state.messageText];
+            return {
+                messageText: '',
+                messages: list
+            };
         });
     }
 
