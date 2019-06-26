@@ -2,6 +2,7 @@ import React from 'react';
 import './Chat.css';
 import UserSettings from './UserSettings.js';
 import MessageForm from './MessageForm.js';
+import MessageBox from './MessageBox.js';
 import socketIoClient from 'socket.io-client';
 
 
@@ -28,7 +29,6 @@ class Chat extends React.Component {
             this.setState(state => {
                 const list = [...state.messages, message]
                 return {
-                    input: state.input,
                     messages: list
                 };
             });
@@ -64,13 +64,7 @@ class Chat extends React.Component {
         return (
             <div className="Chat">
                 <h1>Cat chat !</h1>
-                <div className="MessageList">
-                        {this.state.messages.map(message => {
-                            return (
-                                <span>{message.author}: {message.text}</span>
-                            )
-                        })}
-                </div>
+                <MessageBox messages={this.state.messages}/>
                 <MessageForm onSubmit={this.handleMessageSubmit}/>
                 <button type="button" onClick={this.handleOnclickClear}>Clear chat</button>
                 <UserSettings username={this.state.username} onSubmit={this.handleUsernameChange}/>
