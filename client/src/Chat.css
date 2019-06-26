@@ -1,0 +1,25 @@
+.Chat {
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+    padding: 1em;
+    grid-column: 3;
+    border: 2px solid black;
+}
+
+.Chat textarea {
+    resize: none;
+}
+
+.MessageList span {
+    background-color: lightgrey;
+    display: block;
+}
+
+.MessageList {
+    border: 2px solid black;
+    height: 20em;
+    width: 100%;
+    margin-bottom: 1em;
+    overflow: auto;
+}
