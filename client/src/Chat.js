@@ -1,7 +1,7 @@
-
 import React from 'react';
 import './Chat.css';
 import UserSettings from './UserSettings.js';
+import MessageForm from './MessageForm.js';
 import socketIoClient from 'socket.io-client';
 
 
@@ -14,13 +14,11 @@ class Chat extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            input: '',
             username: 'me',
             messages: []
         };
         this.socket = socketIoClient("http://127.0.0.1:3000");
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleMessageSubmit = this.handleMessageSubmit.bind(this);
         this.handleOnclickClear = this.handleOnclickClear.bind(this);
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
     }
@@ -37,24 +35,16 @@ class Chat extends React.Component {
         });
     }
 
-    handleChange(event) {
-        this.setState({
-            input: event.target.value
-        });
-    }
-
-    handleSubmit(event) {
-        event.preventDefault();
+    handleMessageSubmit(message) {
         console.log('Meow !');
         const msg = {
-            text: this.state.input,
+            text: message,
             author: this.state.username
         }
         this.socket.emit('message', msg);
         this.setState(state => {
             const list = [...state.messages, msg];
             return {
-                input: '',
                 messages: list
             };
         });
@@ -64,8 +54,6 @@ class Chat extends React.Component {
         this.setState({
             username: username
         });
-        console.log(username);
-        console.log(this.state.username);
     }
 
     handleOnclickClear(event) {
@@ -83,17 +71,9 @@ class Chat extends React.Component {
                             )
                         })}
                 </div>
-                <form onSubmit={this.handleSubmit}>
-                    <input
-                            type="text"
-                            placeholder="Enter a message here..."
-                            onChange={this.handleChange}
-                            value={this.state.input} required>
-                    </input>
-                    <button type="submit">Enter</button>
-                </form>
+                <MessageForm onSubmit={this.handleMessageSubmit}/>
                 <button type="button" onClick={this.handleOnclickClear}>Clear chat</button>
-                <UserSettings username={this.state.username} handleUsernameChange={this.handleUsernameChange}/>
+                <UserSettings username={this.state.username} onSubmit={this.handleUsernameChange}/>
             </div>
         );
     }

@@ -1,14 +1,13 @@
 import React from 'react';
 
-class UserSettings extends React.Component {
+class MessageForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             input: ''
         };
-
-        this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(event) {
@@ -24,13 +23,18 @@ class UserSettings extends React.Component {
     }
 
     render() {
-        return (
+        return(
             <form onSubmit={this.handleSubmit}>
-                <input type='text' placeholder={this.props.username} onChange={this.handleChange} value={this.state.input}></input>
-                <button type='submit' onChange={this.handleChange}>Username</button>
+                <input
+                        type="text"
+                        placeholder="Enter a message here..."
+                        onChange={this.handleChange}
+                        value={this.state.input} required>
+                </input>
+                <button type="submit">Enter</button>
             </form>
         );
     }
 }
 
-export default UserSettings;
+export default MessageForm;
