@@ -18,8 +18,10 @@ class MessageForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.props.onSubmit(this.state.input);
-        this.setState({input: ''});
+        if (this.state.input.trim() !== '') {
+            this.props.onSubmit(this.state.input);
+            this.setState({input: ''});
+        }
     }
 
     render() {
@@ -29,7 +31,7 @@ class MessageForm extends React.Component {
                         type="text"
                         placeholder="Enter a message here..."
                         onChange={this.handleChange}
-                        value={this.state.input} required>
+                        value={this.state.input}>
                 </input>
                 <button type="submit">Enter</button>
             </form>
