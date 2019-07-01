@@ -6,6 +6,20 @@ class MessageBox extends React.Component {
         this.state = {
             messages: this.props.messages
         };
+        this.messageEnd = null;
+        this.scrollToBottom = this.scrollToBottom.bind(this);
+    }
+
+    componentDidUpdate() {
+        this.scrollToBottom();
+    }
+
+    componentDidMount() {
+        this.scrollToBottom();
+    }
+
+    scrollToBottom() {
+        this.messageEnd.scrollIntoView({ behavior: "smooth"});
     }
 
     render() {
@@ -16,6 +30,7 @@ class MessageBox extends React.Component {
                             <span>{message.author}: {message.text}</span>
                         )
                     })}
+                    <span ref={(el => {this.messageEnd = el})}></span>
             </div>
         );
     }
