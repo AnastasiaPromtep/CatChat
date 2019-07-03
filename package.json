@@ -9,5 +9,9 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express-session": "^1.16.2",
+    "uuid": "^3.3.2"
+  }
 }
