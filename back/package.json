@@ -4,6 +4,7 @@
   "description": "A basic chat using express and socket.io with cats",
   "main": "src/index.js",
   "scripts": {
+    "start": "nodemon .",
     "test": "echo \"test\""
   },
   "author": "apromtep@gmail.com",
@@ -11,5 +12,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "socket.io": "^2.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
   }
 }
